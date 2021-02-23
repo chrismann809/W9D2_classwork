@@ -12,7 +12,7 @@ const mo = new MovingObject({
     color: "#00FF00"
 });
 
-console.log(mo)
+// console.log(mo)
 
 MovingObject.prototype.draw = function(ctx) {
     ctx.fillStyle = this.color;
@@ -29,18 +29,25 @@ MovingObject.prototype.draw = function(ctx) {
     ctx.fill();
 };
 
+function getRandomPos(max=500) {
+  return [Math.floor(Math.random() * Math.floor(max)), Math.floor(Math.random() * Math.floor(max))];
+}
+
 MovingObject.prototype.move = function(ctx) {
     const that = this;
     setInterval (function() {
         const oldColor = that.color;
         that.color = 'black';
-        that.radius += 10;
+        that.radius += 1;
         that.draw(ctx);
-        that.radius -= 10;
+        that.radius -= 1;
         that.color = oldColor;
         that.pos[0] += that.vel[0];
         that.pos[1] += that.vel[1];
         that.draw(ctx);
+        // that.pos ||= getRandomPos();
+        // that.pos[0] === 500 ? that.pos[0] = 0 : pos[0] = pos[0];
+        // that.pos[1] === 500 ? that.pos[1] = 0 : pos[1] = pos[1];
     }, 100);
 };
 

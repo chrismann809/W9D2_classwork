@@ -1,4 +1,5 @@
 const MovingObject = require('./moving_object.js');
+const Asteroid = require('./asteroid.js');
 window.MovingObject = MovingObject;
 document.addEventListener('DOMContentLoaded', function() {
     const canvasEl = document.getElementById('canvas');
@@ -14,4 +15,8 @@ document.addEventListener('DOMContentLoaded', function() {
         color: "#00FF00"
     });
     mo.move(ctx);
+    for (let count = 0; count < 15; count++) {
+        const ass = new Asteroid({});
+        ass.move(ctx);
+    }
 });
