@@ -14,7 +14,7 @@ const mo = new MovingObject({
 
 console.log(mo)
 
-MovingObect.prototype.draw = function(ctx) {
+MovingObject.prototype.draw = function(ctx) {
     ctx.fillStyle = this.color;
     ctx.beginPath();
 
@@ -27,6 +27,21 @@ MovingObect.prototype.draw = function(ctx) {
         false
     );
     ctx.fill();
+};
+
+MovingObject.prototype.move = function(ctx) {
+    const that = this;
+    setInterval (function() {
+        const oldColor = that.color;
+        that.color = 'black';
+        that.radius += 10;
+        that.draw(ctx);
+        that.radius -= 10;
+        that.color = oldColor;
+        that.pos[0] += that.vel[0];
+        that.pos[1] += that.vel[1];
+        that.draw(ctx);
+    }, 100);
 };
 
 module.exports = MovingObject;
